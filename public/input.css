@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme {
+    /* This maps your custom names to Tailwind classes like bg-primary */
+    --color-primary: #f48525;
+    --color-primary-dark: #d66a10;
+    --color-background-light: #f8f7f5;
+    --color-background-dark: #181411;
+    --color-surface-dark: #27211b;
+    --color-border-dark: #393028;
+
+    --font-display: "Space Grotesk", sans-serif;
+    --font-body: "Noto Sans", sans-serif;
+}
+
+/* Custom CSS that doesn't fit into the theme system */
+@utility glow-text {
+    text-shadow: 0 0 20px rgba(244, 133, 37, 0.3);
+}
+
+@utility code-bg {
+    background-size: 40px 40px;
+    mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+}
