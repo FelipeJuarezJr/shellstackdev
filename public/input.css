@@ -28,4 +28,7 @@
     html {
         scroll-behavior: smooth;
     }
+    .material-symbols-outlined {
+        color: inherit;
+    }
 }

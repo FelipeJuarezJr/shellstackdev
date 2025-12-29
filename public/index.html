@@ -22,7 +22,7 @@
             </div>
             <nav class="hidden md:flex items-center gap-8">
                 <a class="text-gray-300 hover:text-primary transition-colors text-sm font-medium font-display" href="#services">Services</a>
-                <a class="text-gray-300 hover:text-primary transition-colors text-sm font-medium font-display" href="#">Portfolio</a>
+                <a class="text-gray-300 hover:text-primary transition-colors text-sm font-medium font-display" href="#portfolio">Portfolio</a>
                 <a class="text-gray-300 hover:text-primary transition-colors text-sm font-medium font-display" href="#contact">Contact</a>
             </nav>
             <div class="flex items-center gap-4">
@@ -57,9 +57,11 @@
                 </p>
             </div>
             <div class="flex flex-wrap gap-4 justify-center mt-4">
-                <button class="flex min-w-[140px] cursor-pointer items-center justify-center rounded-lg h-12 px-6 bg-primary hover:bg-primary-dark transition-all text-[#181411] text-base font-bold font-display shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5">
-                    View Projects
-                </button>
+                <a href="#portfolio" class="inline-block w-full sm:w-auto">
+                    <button class="flex min-w-[140px] w-full cursor-pointer items-center justify-center rounded-lg h-12 px-6 bg-primary hover:bg-primary-dark transition-all text-[#181411] text-base font-bold font-display shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5">
+                        View Projects
+                    </button>
+                </a>
                 <a href="#contact" class="flex min-w-[140px] cursor-pointer items-center justify-center rounded-lg h-12 px-6 bg-surface-dark border border-border-dark hover:border-primary/50 text-white transition-all text-base font-bold font-display hover:-translate-y-0.5">
                     Contact Us
                 </a>
@@ -172,9 +174,11 @@
                 <a href="#contact" class="flex items-center justify-center rounded-lg h-12 px-8 bg-primary hover:bg-primary-dark transition-colors text-[#181411] text-lg font-bold font-display shadow-lg w-full sm:w-auto">
                     Start a Project
                 </a>
-                <button class="flex items-center justify-center rounded-lg h-12 px-8 bg-transparent border-2 border-white/20 hover:border-primary hover:text-primary transition-colors text-white text-lg font-bold font-display w-full sm:w-auto">
-                    View Portfolio
-                </button>
+                <a href="#portfolio" class="w-full sm:w-auto">
+                    <button class="flex items-center justify-center rounded-lg h-12 px-8 bg-transparent border-2 border-white/20 hover:border-primary hover:text-primary transition-colors text-white text-lg font-bold font-display w-full">
+                        View Portfolio
+                    </button>
+                </a>
             </div>
         </div>
     </section>
@@ -220,6 +224,113 @@
                         Send Message
                     </button>
                 </form>
+            </div>
+        </div>
+    </section>
+    <section id="portfolio" class="relative py-20 px-4 md:px-10 border-b border-border-dark border-t border-t-[#393028] overflow-hidden">
+        <div class="absolute inset-0 z-0 bg-grid-pattern opacity-[0.07] pointer-events-none code-bg"></div>
+        <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="relative z-10 max-w-[1280px] mx-auto">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-dark border border-border-dark text-xs text-primary font-medium mb-4">
+                <span class="material-symbols-outlined text-sm">folder_open</span>
+                Portfolio
+            </div>
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div class="max-w-2xl">
+                    <h1 class="text-white font-display text-4xl md:text-5xl font-bold mb-4 glow-text">Featured Projects</h1>
+                    <p class="text-gray-400 text-lg leading-relaxed">
+                        Explore a collection of our recent work, ranging from enterprise dashboards to high-performance mobile applications. We build scalable solutions that drive business growth.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-16 px-4 md:px-10 bg-[#14110e]">
+        <div class="max-w-[1280px] mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <article class="group flex flex-col card-gradient rounded-xl border border-border-dark overflow-hidden hover:border-primary/50 transition-all hover:-translate-y-1 shadow-lg h-full">
+                    <div class="h-56 bg-[#1f1a16] relative overflow-hidden flex items-center justify-center group-hover:bg-[#251f1a] transition-colors border-b border-border-dark">
+                        <div class="absolute inset-0 bg-grid-pattern opacity-[0.05]"></div>
+                        <div class="relative z-10 w-16 h-16 rounded-2xl bg-gradient-to-br from-teal-800 to-teal-950 border border-teal-800 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-500">
+                            <span class="material-symbols-outlined text-3xl text-teal-300">thumb_up</span>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-300 to-transparent"></div>                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-white text-xl font-bold font-display group-hover:text-primary transition-colors">ReptiGram - Social Media App</h3>
+                            <a class="text-gray-500 hover:text-primary transition-colors" href="https://reptigram.com/" target="_blank"><span class="material-symbols-outlined">arrow_outward</span></a>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 flex-grow leading-relaxed">ReptiGram is a social media platform built for reptile enthusiasts to share photos, videos, and updates, connect with breeders and keepers, and showcase their reptiles—all in one community designed specifically for the reptile world.</p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="px-2.5 py-1 bg-[#181411] rounded border border-border-dark text-xs font-medium text-gray-300">Flutter</span>
+                            <span class="px-2.5 py-1 bg-[#181411] rounded border border-border-dark text-xs font-medium text-gray-300">Dart</span>
+                            <span class="px-2.5 py-1 bg-[#181411] rounded border border-border-dark text-xs font-medium text-gray-300">Firestore</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="group flex flex-col card-gradient rounded-xl border border-border-dark overflow-hidden hover:border-primary/50 transition-all hover:-translate-y-1 shadow-lg h-full">
+                    <div class="h-56 bg-[#1f1a16] relative overflow-hidden flex items-center justify-center group-hover:bg-[#251f1a] transition-colors border-b border-border-dark">
+                        <div class="absolute inset-0 bg-grid-pattern opacity-[0.05]"></div>
+                        <div class="relative z-10 w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-dark to-orange-900 border border-orange-800 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-500">
+                            <span class="material-symbols-outlined text-3xl text-orange-200">glucose</span>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-white text-xl font-bold font-display group-hover:text-primary transition-colors">Sugar Buddy - Diabetes Habit Tracker</h3>
+                            <a class="text-gray-500 hover:text-primary transition-colors" href="https://white-sky-07cdb371e.3.azurestaticapps.net/" target="_blank"><span class="material-symbols-outlined">arrow_outward</span></a>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 flex-grow leading-relaxed">Sugar Buddy is a simple, supportive app designed to help people track blood sugar, monitor daily habits, and stay motivated on their diabetes or wellness journey through easy logging and friendly insights.</p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="px-2.5 py-1 bg-[#181411] rounded border border-border-dark text-xs font-medium text-gray-300">React</span>
+                            <span class="px-2.5 py-1 bg-[#181411] rounded border border-border-dark text-xs font-medium text-gray-300">Tailwind CSS</span>
+                            <span class="px-2.5 py-1 bg-[#181411] rounded border border-border-dark text-xs font-medium text-gray-300">Azure</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="group flex flex-col card-gradient rounded-xl border border-border-dark overflow-hidden hover:border-primary/50 transition-all hover:-translate-y-1 shadow-lg h-full">
+                    <div class="h-56 bg-[#1f1a16] relative overflow-hidden flex items-center justify-center group-hover:bg-[#251f1a] transition-colors border-b border-border-dark">
+                        <div class="absolute inset-0 bg-grid-pattern opacity-[0.05]"></div>
+                        <div class="relative z-10 w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-900 to-blue-950 border border-blue-800 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-500">
+                            <span class="material-symbols-outlined text-3xl text-blue-400">query_stats</span>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-white text-xl font-bold font-display group-hover:text-primary transition-colors">Fresh Today - Sobriety Progress App</h3>
+                            <a class="text-gray-500 hover:text-primary transition-colors" href="https://play.google.com/store/apps/details?id=com.freshtoday_app.app&pcampaignid=web_share" target="_blank"><span class="material-symbols-outlined">arrow_outward</span></a>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 flex-grow leading-relaxed">FreshToday is a sobriety and wellness app that helps users stay drug and alcohol free by tracking progress, building healthy habits, and staying motivated with daily encouragement and challenges—one fresh day at a time.</p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="px-2.5 py-1 bg-[#181411] rounded border border-border-dark text-xs font-medium text-gray-300">Flutter</span>
+                            <span class="px-2.5 py-1 bg-[#181411] rounded border border-border-dark text-xs font-medium text-gray-300">Dart</span>
+                            <span class="px-2.5 py-1 bg-[#181411] rounded border border-border-dark text-xs font-medium text-gray-300">Android</span>
+
+                        </div>
+                    </div>
+                </article>
+                <article class="group flex flex-col card-gradient rounded-xl border border-border-dark overflow-hidden hover:border-primary/50 transition-all hover:-translate-y-1 shadow-lg h-full">
+                    <div class="h-56 bg-[#1f1a16] relative overflow-hidden flex items-center justify-center group-hover:bg-[#251f1a] transition-colors border-b border-border-dark">
+                        <div class="absolute inset-0 bg-grid-pattern opacity-[0.05]"></div>
+                        <div class="relative z-10 w-16 h-16 rounded-2xl bg-gradient-to-br from-lime-800 to-lime-950 border border-lime-800 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-500">
+                            <span class="material-symbols-outlined text-3xl text-lime-400">genetics</span>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-lime-400 to-transparent"></div>                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-white text-xl font-bold font-display group-hover:text-primary transition-colors">RepFiles - Reptile Breeding App</h3>
+                            <a class="text-gray-500 hover:text-primary transition-colors" href="https://repfiles.web.app/" target="_blank"><span class="material-symbols-outlined">arrow_outward</span></a>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 flex-grow leading-relaxed">RepFiles is a reptile breeding and husbandry management app that helps keepers track reptiles, genetics, lineage, pairings, clutches, health records, and growth—all in one organized system.</p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="px-2.5 py-1 bg-[#181411] rounded border border-border-dark text-xs font-medium text-gray-300">Flutter</span>
+                            <span class="px-2.5 py-1 bg-[#181411] rounded border border-border-dark text-xs font-medium text-gray-300">Dart</span>
+                            <span class="px-2.5 py-1 bg-[#181411] rounded border border-border-dark text-xs font-medium text-gray-300">Firestore</span>
+                        </div>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
