@@ -427,33 +427,17 @@
         };
 
         try {
-// 1. Prepare the document for the Trigger Email extension
-            const emailData = {
-                to: 'mr.felipe.juarez.jr@gmail.com', // Where YOU want to receive the notification
-                replyTo: formData.email,      // So you can click 'Reply' in your email client
-                message: {
-                    subject: `New Quote Request from ${formData.name}`,
-                    html: `
-                <h3>New Project Inquiry</h3>
-                <p><strong>Name:</strong> ${formData.name}</p>
-                <p><strong>Email:</strong> ${formData.email}</p>
-                <p><strong>Service:</strong> ${formData.service}</p>
-                <p><strong>Message:</strong> ${formData.message}</p>
-            `,
-                },
-                // Keeping your original data for your own records/dashboard
-                customerName: formData.name,
-                serviceInterest: formData.service,
-                submittedAt: formData.timestamp
-            };
+            // Add a new document to the "quotes" collection
+            await addDoc(collection(db, "quotes"), formData);
 
-            // 2. Add document to the "mail" collection (standard for the extension)
-            await addDoc(collection(db, "mail"), emailData);
-
-            // Success UI logic...
+            // 1. Hide the form (or you can just hide the button)
             contactForm.classList.add('hidden');
+
+            // 2. Show the success message
             const successBox = document.getElementById('successMessage');
             successBox.classList.remove('hidden');
+
+            // Optional: Scroll to the message so they see it
             successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
         } catch (error) {
