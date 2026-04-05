@@ -539,7 +539,6 @@
             </div>
         </section>
     </main>
-    </main>
     <footer class="bg-[#110e0c] border-t border-border-dark py-12 px-4 md:px-10">
         <div class="max-w-[1280px] mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-start gap-10 mb-10">
@@ -665,50 +664,52 @@
         const closeVideoModal = document.getElementById('closeVideoModal');
         const demoVideo = document.getElementById('freshTodayDemoVideo');
 
-        // State guard to prevent play/pause collisions
         let isTransitioning = false;
 
         const openFreshTodayModal = async () => {
-            if (isTransitioning) return;
+            if (isTransitioning || !videoModal || !demoVideo) return;
             isTransitioning = true;
 
-            // 1. Reset state: Ensure video is paused and at start before showing
-            demoVideo.pause();
-            demoVideo.currentTime = 0;
-
+            // 1. Show the modal first so the video element exists in the layout
             videoModal.classList.remove('hidden');
             videoModal.classList.add('flex');
             document.body.style.overflow = 'hidden';
 
-            // 2. Wait for DOM paint
-            await new Promise(resolve => requestAnimationFrame(resolve));
+            // 2. Trigger the fade-in
+            requestAnimationFrame(() => {
+                videoModal.classList.remove('opacity-0');
+                videoModal.classList.add('opacity-100');
+            });
 
-            videoModal.classList.remove('opacity-0');
-            videoModal.classList.add('opacity-100');
+            try {
+                // 3. Force the browser to re-fetch/buffer the source
+                demoVideo.load();
+                demoVideo.muted = true;
 
-            // 3. The "Safe Play" delay
-            setTimeout(async () => {
-                try {
-                    demoVideo.muted = true;
-                    // The secret sauce: check if modal is still visible before playing
-                    if (!videoModal.classList.contains('hidden')) {
-                        await demoVideo.play();
-                    }
-                } catch (e) {
-                    console.warn("Playback handled:", e);
-                } finally {
-                    isTransitioning = false;
+                // 4. Wait a tiny bit for the load to initialize
+                await new Promise(resolve => setTimeout(resolve, 100));
+
+                const playPromise = demoVideo.play();
+                if (playPromise !== undefined) {
+                    await playPromise;
                 }
-            }, 200); // Increased to 200ms to ensure CSS transitions don't interfere
+            } catch (error) {
+                console.warn("Autoplay blocked, showing controls:", error);
+                demoVideo.controls = true;
+            } finally {
+                isTransitioning = false;
+            }
         };
 
         const hideVideoModal = () => {
+            if (isTransitioning) return;
+            isTransitioning = true;
+
             videoModal.classList.remove('opacity-100');
             videoModal.classList.add('opacity-0');
 
             setTimeout(() => {
                 demoVideo.pause();
-                demoVideo.currentTime = 0;
                 videoModal.classList.add('hidden');
                 videoModal.classList.remove('flex');
                 document.body.style.overflow = '';
@@ -716,29 +717,33 @@
             }, 300);
         };
 
-        // Attach Listeners
-        if (freshTodayBtn && videoModal && demoVideo) {
-            freshTodayBtn.addEventListener('click', openFreshTodayModal);
-            closeVideoModal.addEventListener('click', hideVideoModal);
-            videoModal.addEventListener('click', (e) => { if (e.target === videoModal) hideVideoModal(); });
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && !videoModal.classList.contains('hidden')) hideVideoModal();
+        // Listeners
+        if (freshTodayBtn) freshTodayBtn.addEventListener('click', openFreshTodayModal);
+        if (closeVideoModal) closeVideoModal.addEventListener('click', hideVideoModal);
+        if (videoModal) {
+            videoModal.addEventListener('click', (e) => {
+                if (e.target === videoModal) hideVideoModal();
             });
         }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && videoModal && !videoModal.classList.contains('hidden')) {
+                hideVideoModal();
+            }
+        });
     </script>
-
     <!-- Video Lightbox Modal -->
     <div id="freshTodayVideoModal"
-        class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+        class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 backdrop-blur-md opacity-0 transition-opacity duration-300">
         <div
-            class="relative w-full max-w-4xl mx-4 rounded-2xl overflow-hidden shadow-2xl border border-border-dark bg-[#181411]">
+            class="relative w-full max-w-lg mx-4 rounded-2xl overflow-hidden shadow-2xl border border-border-dark bg-[#181411]">
             <button id="closeVideoModal"
-                class="absolute top-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-black/50 text-white hover:bg-black/80 hover:text-primary transition-colors cursor-pointer">
+                class="absolute top-4 right-4 z-[110] flex h-10 w-10 items-center justify-center rounded-full bg-black/50 text-white hover:bg-primary transition-colors cursor-pointer">
                 <span class="material-symbols-outlined">close</span>
             </button>
+
             <video id="freshTodayDemoVideo" class="w-full h-auto max-h-[85vh] object-contain bg-black" controls
-                preload="metadata" playsinline muted>
-                <source src="videos/freshTodayDemo.mp4" type="video/mp4" />
+                playsinline muted>
+                <source src="/videos/freshTodayDemo.mp4" type="video/mp4" />
             </video>
         </div>
     </div>

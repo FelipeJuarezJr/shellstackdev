@@ -5,6 +5,31 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+    "headers": [
+      {
+        "source": "**/*.mp4",
+        "headers": [
+          {
+            "key": "Accept-Ranges",
+            "value": "bytes"
+          },
+          {
+            "key": "Content-Type",
+            "value": "video/mp4"
+          },
+          {
+            "key": "Cache-Control",
+            "value": "max-age=3600"
+          }
+        ]
+      }
     ]
   }
 }
