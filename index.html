@@ -670,23 +670,21 @@
             if (isTransitioning || !videoModal || !demoVideo) return;
             isTransitioning = true;
 
-            // 1. Show the modal first so the video element exists in the layout
             videoModal.classList.remove('hidden');
             videoModal.classList.add('flex');
             document.body.style.overflow = 'hidden';
 
-            // 2. Trigger the fade-in
             requestAnimationFrame(() => {
                 videoModal.classList.remove('opacity-0');
                 videoModal.classList.add('opacity-100');
             });
 
             try {
-                // 3. Force the browser to re-fetch/buffer the source
-                demoVideo.load();
+                // --- ADDED LOOP LOGIC HERE ---
                 demoVideo.muted = true;
+                demoVideo.loop = true; // This tells the browser to restart when finished
+                demoVideo.load();      // Re-loads the video to ensure it starts from 0s
 
-                // 4. Wait a tiny bit for the load to initialize
                 await new Promise(resolve => setTimeout(resolve, 100));
 
                 const playPromise = demoVideo.play();
@@ -742,7 +740,7 @@
             </button>
 
             <video id="freshTodayDemoVideo" class="w-full h-auto max-h-[85vh] object-contain bg-black" controls
-                playsinline muted>
+                playsinline muted loop>
                 <source src="/videos/freshTodayDemo.mp4" type="video/mp4" />
             </video>
         </div>
